@@ -1,0 +1,9 @@
+{
+	"name": "assessmentfactory03",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "228cedc5-7392-4ddd-a736-99de73f9e688",
+		"tenantId": "779f9d66-8cb4-494e-8449-eaaa572050fe"
+	}
+}

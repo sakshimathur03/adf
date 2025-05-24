@@ -1,0 +1,66 @@
+{
+	"name": "DerivedColumnDataFlow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"name": "SinkOutput"
+				}
+			],
+			"transformations": [
+				{
+					"name": "AddIngestDate"
+				}
+			],
+			"scriptLines": [
+				"parameters{",
+				"     parameter1 as string",
+				"}",
+				"source(output(",
+				"          SO43701 as string,",
+				"          {11} as string,",
+				"          {2019-07-01} as string,",
+				"          {Christy Zhu} as string,",
+				"          {christy12@adventure-works.com} as string,",
+				"          {Mountain-100 Silver, 44} as string,",
+				"          {16} as string,",
+				"          {3399.99} as string,",
+				"          {271.9992} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(ingestDate = currentUTC()) ~> AddIngestDate",
+				"AddIngestDate sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          SO43701 as string,",
+				"          {11} as string,",
+				"          {2019-07-01} as string,",
+				"          {Christy Zhu} as string,",
+				"          {christy12@adventure-works.com} as string,",
+				"          {Mountain-100 Silver, 44} as string,",
+				"          {16} as string,",
+				"          {3399.99} as string,",
+				"          {271.9992} as string",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SinkOutput"
+			]
+		}
+	}
+}
